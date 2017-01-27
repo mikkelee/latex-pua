@@ -14,10 +14,11 @@
 \ProcessKeyvalOptions*
 
 \ifx\mufi@font\mufi@nofont{%
-	\PackageError{mufi}{No font supplied!}{Make sure specify a font that supports the MUFI characters with the font option.}%
-}\fi
-
-\newfontface\mufi@changefont{\mufi@font}
+	\PackageWarning{mufi}{Make sure your main font supports the MUFI characters; otherwise supply one that does with the font option.}
+	\newcommand\mufi@changefont[1]{#1}%
+\else%
+	\newfontface\mufi@changefont{\mufi@font}%
+\fi%
 
 \newcommand\OEligogon{{\mufi@changefont{^^^^e262}}} % LATIN CAPITAL LIGATURE OE WITH OGONEK (MUFI: 4.0)
 \newcommand\Pdblac{{\mufi@changefont{^^^^e268}}} % LATIN CAPITAL LETTER P WITH DOUBLE ACUTE (MUFI: 4.0)
