@@ -9,6 +9,8 @@ Supports two options:
 
 Fonts & information available at [Medieval Unicode Font Initiative](http://www.mufi.info/)
 
+Use the entity name as a command to insert the characters (see the .tsv files or the MUFI website for entity names).
+
 Example
 =======
 
