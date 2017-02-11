@@ -7,12 +7,16 @@ Supports two options:
 - `font` selects the font to use for displaying the characters.
 - `mufifour` enables the MUFI 4.0 specified characters (which are not yet fully supported by the available fonts).
 
+Requires `fontspec` and a MUFI-compatible font.
+
 Fonts & information available at [Medieval Unicode Font Initiative](http://www.mufi.info/)
 
 Use the entity name as a command to insert the characters (see the .tsv files or the MUFI website for entity names).
 
 Example
 =======
+
+![example](/example.png?raw=true)
 
 ```latex
 \documentclass{paper}
@@ -25,7 +29,7 @@ Example
 \begin{document}
 
 \huge{
-Normal Unicode characters: A B C a b c
+Normal Unicode characters: ĀBĊ ābċ
 
 MUFI 3.0 characters: \msignflour{} \yrgmainstrok{}
 
