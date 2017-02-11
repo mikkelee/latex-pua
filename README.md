@@ -38,3 +38,5 @@ MUFI 4.0 characters: \OEligogon{} \UUlig{} \helbing{}
 
 \end{document}
 ```
+
+Note that the MUFI 4.0 character `OEligogon` didn't show up as it was not supported by the Palemonas font at the time of writing.
