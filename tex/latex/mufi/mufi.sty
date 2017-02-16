@@ -1,7 +1,6 @@
 \ProvidesPackage{mufi}[2017/01/27 MUFI Character Macros]
 
 \RequirePackage{kvoptions}
-\RequirePackage{fontspec}
 
 \makeatletter
 
@@ -16,6 +15,7 @@
 	\PackageWarning{mufi}{Make sure your main font supports the MUFI characters; otherwise supply one that does with the font option.}
 	\newcommand\mufi@changefont[1]{#1}%
 \else%
+	\RequirePackage{fontspec}
 	\newfontface\mufi@changefont{\mufi@font}%
 \fi%
 
