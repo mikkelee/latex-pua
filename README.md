@@ -4,10 +4,10 @@ MUFI macros for LaTeX
 Just a simple package for using MUFI characters in LaTeX, to enable transcription & display of medieval documents.
 
 Supports two options:
-- `font` selects the font to use for displaying the characters.
+- `font` selects the font to use for displaying the characters. Requires the `fontspec` package.
 - `mufifour` enables the MUFI 4.0 specified characters (which are not yet fully supported by the available fonts).
 
-Requires `fontspec` and a MUFI-compatible font.
+Requires XeLaTeX or LuaLaTeX and a MUFI-compatible font.
 
 Fonts & information available at [Medieval Unicode Font Initiative](http://www.mufi.info/)
 
