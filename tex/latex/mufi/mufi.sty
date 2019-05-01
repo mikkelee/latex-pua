@@ -1,4 +1,4 @@
-\ProvidesPackage{mufi}[2019/04/25 MUFI Character Macros]
+\ProvidesPackage{mufi}[2019/04/29 MUFI Character Macros]
 
 \RequirePackage{kvoptions}
 \RequirePackage{pgfkeys}
@@ -10,6 +10,7 @@
 
 \DeclareStringOption{font}{\mufi@nofont}
 \DeclareBoolOption{mufifour}
+\DeclareBoolOption{nomacros}
 
 \ProcessKeyvalOptions*
 
@@ -40,7 +41,9 @@
 \mufiset{
 	/handlers/.unknown/.code={%
 		\csdef{mufi@\pgfkeyscurrentname}{#1}%
-		\csdef{\pgfkeyscurrentname}{\mufi{#1}}%
+		\ifmufi@nomacros\relax\else%
+			\csdef{\pgfkeyscurrentname}{\mufi{#1}}%
+		\fi%
 	},
 }
 
