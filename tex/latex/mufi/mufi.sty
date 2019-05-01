@@ -3,6 +3,7 @@
 \RequirePackage{kvoptions}
 \RequirePackage{pgfkeys}
 \RequirePackage{etoolbox}
+\RequirePackage{xparse}
 
 \makeatletter
 
@@ -16,20 +17,19 @@
 
 \ifx\mufi@font\mufi@nofont{%
 	\PackageWarning{mufi}{Make sure your main font supports the MUFI characters; otherwise supply one that does with the font option.}
-	\newcommand\mufi@changefont[1]{#1}%
+	\newcommand\mufifont{}%
 \else%
 	\RequirePackage{fontspec}
-	\newfontface\mufi@changefont{\mufi@font}%
+	\newfontface\mufifont{\mufi@font}%
 \fi%
 
-\newcommand\mufi[1]{%
+\NewDocumentCommand\mufi { s m } {%
 	{%
-		\mufi@changefont{%
-			\ifcsdef{mufi@#1}{%
-				\symbol{"\csuse{mufi@#1}}%
-			}{%
-				\symbol{"#1}%
-			}
+		\IfBooleanF{#1}{\mufifont}%
+		\ifcsdef{mufi@#2}{%
+			\symbol{"\csuse{mufi@#2}}%
+		}{%
+			\symbol{"#2}%
 		}%
 	}%
 }
@@ -42,7 +42,15 @@
 	/handlers/.unknown/.code={%
 		\csdef{mufi@\pgfkeyscurrentname}{#1}%
 		\ifmufi@nomacros\relax\else%
-			\csdef{\pgfkeyscurrentname}{\mufi{#1}}%
+			\csdef{mufi@\pgfkeyscurrentname @star}{\mufi*{#1}}%
+			\csdef{mufi@\pgfkeyscurrentname @nostar}{\mufi{#1}}%
+			\csxdef{\pgfkeyscurrentname}{%
+				\noexpand\@ifstar{%
+					\csexpandonce{mufi@\pgfkeyscurrentname @star}%
+				}{%
+					\csexpandonce{mufi@\pgfkeyscurrentname @nostar}%
+				}%
+			}%
 		\fi%
 	},
 }

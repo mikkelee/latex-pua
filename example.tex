@@ -6,21 +6,55 @@
 	mufifour
 ]{mufi}
 
+\setlength{\parindent}{0pt}
+
+\newcommand\display[1]{%
+	\texttt{\ignorespaces\detokenize{#1}}: [#1]%
+}
+
 \begin{document}
 
 \section{Normal Unicode characters}
-\verb|ĀBĊ ābċ|: ĀBĊ ābċ
-
+\display{Ā} --- 
+\display{B} --- 
+\display{Ċ} --- 
+\display{ā} --- 
+\display{b} --- 
+\display{ċ} --- 
 
 \section{MUFI 3.0 characters}
-\verb|\msignflour{} \yrgmainstrok{}|: \msignflour{} \yrgmainstrok{}\\
-\verb|\mufi{msignflour} \mufi{yrgmainstrok}|: \mufi{msignflour} \mufi{yrgmainstrok}\\
-\verb|\mufi{F2F3} \mufi{F233}|: \mufi{msignflour} \mufi{yrgmainstrok}
+\display{\msignflour{}} --- 
+\display{\mufi{msignflour}} --- 
+\display{\mufi{F2F3}}\\
+\display{\yrgmainstrok{}} --- 
+\display{\mufi{yrgmainstrok}} --- 
+\display{\mufi{F233}}
 
 
 \section{MUFI 4.0 characters}
-\verb|\OEligogon{} \UUlig{} \helbing{}|: \OEligogon{} \UUlig{} \helbing{}\\
-\verb|\mufi{OEligogon} \mufi{UUlig} \mufi{helbing}|: \mufi{OEligogon} \mufi{UUlig} \mufi{helbing}\\
-\verb|\mufi{E262} \mufi{E8C6} \mufi{F2FB}|: \mufi{E262} \mufi{E8C6} \mufi{F2FB}
+Note that the currently installed Palemonas MUFI font on this machine does not have the OEligogon character.
+
+\vspace{12pt}
+\display{\OEligogon{}} --- 
+\display{\mufi{OEligogon}} --- 
+\display{\mufi{E262}}\\
+\display{\UUlig{}} --- 
+\display{\mufi{UUlig}} --- 
+\display{\mufi{E8C6}}\\
+\display{\helbing{}} --- 
+\display{\mufi{helbing}} --- 
+\display{\mufi{F2FB}}
+
+
+\section{Starred vs. unstarred}
+The unstarred commands use the configured font, whereas the starred version simply uses the current document font. Note the difference in the \@ signs as well as the missing \texttt{msignflour} in the document font.
+
+\vspace{12pt}
+\display{\mufi{0040}} --- 
+\display{\mufi*{0040}}\\
+\display{\mufi{0041}} --- 
+\display{\mufi*{0041}}\\
+\display{\msignflour{}} --- 
+\display{\msignflour*{}}\\
 
 \end{document}

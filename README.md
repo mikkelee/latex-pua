@@ -14,6 +14,7 @@ By default, generates commands with the entity names (see the .tsv files or the 
 
 The general `\mufi` accepts entity names and unicode codepoints (using `\symbol`).
 
+The commands may be starred to suppress use of the configured font for the specific glyph.
 
 Fonts & information available at [Medieval Unicode Font Initiative](http://www.mufi.info/)
 
