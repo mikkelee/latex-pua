@@ -28,13 +28,20 @@ Example
 
 \begin{document}
 
-\huge{
-Normal Unicode characters: ĀBĊ ābċ
+\section{Normal Unicode characters}
+\verb|ĀBĊ ābċ|: ĀBĊ ābċ
 
-MUFI 3.0 characters: \msignflour{} \yrgmainstrok{}
 
-MUFI 4.0 characters: \OEligogon{} \UUlig{} \helbing{}
-}
+\section{MUFI 3.0 characters}
+\verb|\msignflour{} \yrgmainstrok{}|: \msignflour{} \yrgmainstrok{}\\
+\verb|\mufi{msignflour} \mufi{yrgmainstrok}|: \mufi{msignflour} \mufi{yrgmainstrok}\\
+\verb|\mufi{F2F3} \mufi{F233}|: \mufi{msignflour} \mufi{yrgmainstrok}
+
+
+\section{MUFI 4.0 characters}
+\verb|\OEligogon{} \UUlig{} \helbing{}|: \OEligogon{} \UUlig{} \helbing{}\\
+\verb|\mufi{OEligogon} \mufi{UUlig} \mufi{helbing}|: \mufi{OEligogon} \mufi{UUlig} \mufi{helbing}\\
+\verb|\mufi{E262} \mufi{E8C6} \mufi{F2FB}|: \mufi{E262} \mufi{E8C6} \mufi{F2FB}
 
 \end{document}
 ```
