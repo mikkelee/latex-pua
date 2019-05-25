@@ -16,11 +16,11 @@ The general `\mufi` accepts entity names and unicode codepoints (using `\symbol`
 
 The commands may be starred to suppress use of the configured font for the specific glyph.
 
-Fonts & information available at [Medieval Unicode Font Initiative](http://www.mufi.info/)
+Fonts & information available at [Medieval Unicode Font Initiative](http://www.mufi.info/) — this package is not affiliated with MUFI, but is merely the work of Mikkel Eide Eriksen (<mikkel.eriksen@gmail.com>).
 
 Example
 =======
 
-![example](docs/latex/mufi/example.png?raw=true)
+![example](docs/example.png?raw=true)
 
-See [example.tex](docs/latex/mufi/example.tex?raw=true) for the code.
+See [example.tex](docs/example.tex?raw=true) for the code.
