@@ -21,6 +21,6 @@ Fonts & information available at [Medieval Unicode Font Initiative](http://www.m
 Example
 =======
 
-![example](/example.png?raw=true)
+![example](docs/latex/mufi/example.png?raw=true)
 
-See [example.tex](/example.tex?raw=true) for the code.
+See [example.tex](docs/latex/mufi/example.tex?raw=true) for the code.
