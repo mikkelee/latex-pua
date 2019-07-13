@@ -1,0 +1,35 @@
+\section{Preface}
+
+While Unicode supports the vast majority of use cases, there are ...
+
+Thus the Private Use Area (PUA) at code points E000--F8FF.
+
+This package allows using a number of macros to enter characters from the PUA by name and code point.
+
+\section{Setup}
+
+\usepackage[...]{\packagename}
+
+Where options must be one or more of the following character sets, some of which may be mutually compatible. See references for further detail on each.
+
+\begin{description}
+
+% \item[CSUR] - https://www.evertype.com/standards/csur/
+\item[CYFI] Early Cyrillic glyphs
+% DANIA ???
+% \item[LINCUA] Includes the mutually compatible (?) character sets CYFI, DANIA, MUFI, and TITUS
+\item[MUFI] The Medieval Unicode Font Initiative
+\item[SIL] SIL International
+% \item[TITUS] Thesaurus Indogermanischer Text- und Sprachmaterialien
+\item[UNZ] Normung von Sonderzeichen
+
+\end{description}
+
+There is no default, since future versions of this package may supply more character sets that are incompatible with the above.
+
+\section{Usage}
+
+Each set defines a macro in the following manner:
+
+\mufi{}
+

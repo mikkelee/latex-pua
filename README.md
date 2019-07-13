@@ -1,7 +1,7 @@
-MUFI macros for LaTeX
-=====================
+Unicode alphabet macros for LaTeX
+=================================
 
-Just a simple package for using MUFI characters in LaTeX, to enable transcription & display of medieval documents.
+Just a simple package for using various PUA character sets in LaTeX, to enable transcription & display of medieval and other documents.
 
 Supports three options:
 - `font` selects the font to use for displaying the characters. Requires the `fontspec` package.
@@ -12,7 +12,7 @@ Requires XeLaTeX or LuaLaTeX and a MUFI-compatible font.
 
 By default, generates commands with the entity names (see the .tsv files or the MUFI website for entity names).
 
-The general `\mufi` accepts entity names and unicode codepoints (using `\symbol`).
+The general `\mufi` macro accepts entity names and unicode codepoints (using `\symbol`).
 
 The commands may be starred to suppress use of the configured font for the specific glyph.
 
