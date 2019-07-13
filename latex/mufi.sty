@@ -12,6 +12,7 @@
 \DeclareStringOption{font}{\mufi@nofont}
 \DeclareBoolOption{mufifour}
 \DeclareBoolOption{nomacros}
+\DeclareBoolOption{noshape}
 
 \ProcessKeyvalOptions*
 
@@ -20,12 +21,21 @@
 	\newcommand\mufifont{}%
 \else%
 	\RequirePackage{fontspec}
-	\newfontface\mufifont{\mufi@font}%
+	\newfontface\mufifont{\mufi@font}% TODO newfontfamily
 \fi%
 
 \NewDocumentCommand\mufi { s m } {%
 	{%
-		\IfBooleanF{#1}{\mufifont}%
+		\IfBooleanF{#1}{%
+			\ifcsstring{f@shape}{n}{%
+				\csgdef{mufishape}{}%
+			}{%
+				\csgdef{mufishape}{\csuse{\f@shape shape}}%
+			}%
+			%\show\mufishape%
+			\mufifont%
+			\ifmufi@noshape\relax\else\mufishape\fi%
+		}%
 		\ifcsdef{mufi@#2}{%
 			\symbol{"\csuse{mufi@#2}}%
 		}{%
