@@ -10,17 +10,25 @@
 
 \makeatletter
 
-\newcommand\alph@set[1]{\pgfkeys{/unicode-alphabets/.cd,#1}}
+\newcommand\alph@keys[1]{\pgfkeys{/unicode-alphabets/.cd,#1}}
 
-\alph@set{
-	fonts/.code={\alph@set{fonts/.cd,#1}},
-	fonts/MUFI/.store in=\alph@font@mufi,
-	fonts/CYFI/.store in=\alph@font@cyfi,
-	CYFI/.default={cyfi},
-	CYFI/.code={\alph@make@set{cyfi}{#1}},
-	MUFI/.default={mufi},
-	MUFI/.code={\alph@make@set{mufi}{#1}},
+\alph@keys{
+	fonts/.code={\alph@keys{fonts/.cd,#1}},
 }
+
+\newcommand\alph@setup[2]{
+	\edef\temp{%
+		\noexpand\alph@keys{
+			fonts/#1/.store in=\unexpanded\expandafter{\csname alph@font@#2\endcsname},
+		}%
+	}\temp%
+	\alph@keys{
+		#1/.default={#2},
+		#1/.code={\alph@make@set{#2}{##1}},
+	}
+}
+\alph@setup{MUFI}{mufi}
+\alph@setup{CYFI}{cyfi}
 
 \newcommand\alph@make@set[2]{%
 	% #1 = character set
