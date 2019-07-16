@@ -32,9 +32,12 @@
 		#1/.code={\alph@make@set{#2}{##1}},
 	}
 }
-\alph@setup{MUFI}{mufi}
 \alph@setup{CYFI}{cyfi}
+\alph@setup{MUFI}{mufi}
 \alph@setup{TITUS}{titus}
+\alph@keys{
+	LINCUA/.style={CYFI,MUFI,TITUS}
+}
 
 \newcommand\alph@make@set[2]{%
 	% #1 = character set

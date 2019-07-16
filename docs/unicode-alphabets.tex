@@ -52,13 +52,13 @@ Where \verb|options| must be one or more of the following character sets, some o
 \begin{description}
 
 % \item[CSUR] - https://www.evertype.com/standards/csur/
-\item[CYFI] Early Cyrillic glyphs.
+\item[CYFI\cite{CYFI}] Early Cyrillic glyphs.
 % DANIA ???
-% \item[LINCUA] Includes the mutually compatible (?) character sets CYFI, DANIA, MUFI, and TITUS
-\item[MUFI] The Medieval Unicode Font Initiative.
-% \item[SIL] SIL International.
-\item[TITUS] Thesaurus Indogermanischer Text- und Sprachmaterialien.
-% \item[UNZ] Normung von Sonderzeichen.
+\item[LINCUA\cite{LINCUA}] Shortcut for enabling the character sets CYFI, MUFI, and TITUS.
+\item[MUFI\cite{MUFI}] The Medieval Unicode Font Initiative.
+% \item[SIL\cite{SIL}] SIL International.
+\item[TITUS\cite{TITUS}] Thesaurus Indogermanischer Text- und Sprachmaterialien.
+% \item[UNZ\cite{UNZ}] Normung von Sonderzeichen.
 
 \end{description}
 
@@ -105,7 +105,6 @@ By default, a macro with the lower-case name of the character set is defined: \v
 
 Additionally, starred versions of each macro are defined, which suppress using the configured font, falling back to the document font.
 
-\nocite{*}
 \printbibliography
 
 \end{document}
