@@ -47,24 +47,26 @@ The package is configured in the following manner:
 \usepackage[⟨options⟩]{unicode-alphabets}
 \end{verbatim}
 
-Where \verb|options| must be one or more of the following character sets. See references for further detail on each.
+Where \verb|options| must be one or more of the following character sets. See references for further detail on each, as well as usable fonts.
 
+\begin{figure}[H]
 \begin{description}
 
 % \item[CSUR] - https://www.evertype.com/standards/csur/
-\item[CYFI\cite{CYFI}] Early Cyrillic glyphs.
+\item[CYFI] Early Cyrillic glyphs\cite{CYFI}.
 % DANIA ???
-\item[LINCUA\cite{LINCUA}] Shortcut for enabling the character sets CYFI, MUFI, and TITUS.
-\item[MUFI\cite{MUFI}] The Medieval Unicode Font Initiative.
-% \item[SIL\cite{SIL}] SIL International.
-\item[TITUS\cite{TITUS}] Thesaurus Indogermanischer Text- und Sprachmaterialien.
-\item[UNZ\cite{UNZ}] Normung von Sonderzeichen.
+\item[LINCUA] Shortcut for enabling the character sets CYFI, MUFI, and TITUS\cite{LINCUA}.
+\item[MUFI] The Medieval Unicode Font Initiative\cite{MUFI}.
+\item[SIL] SIL International\cite{SIL}.
+\item[TITUS] Thesaurus Indogermanischer Text- und Sprachmaterialien\cite{TITUS}.
+\item[UNZ] Normung von Sonderzeichen\cite{UNZ}.
 
 \end{description}
+\caption{Character sets}
+\end{figure}
 
 There is no default, since future versions of this package may supply more character sets that are incompatible with the above.
 
-\clearpage
 Additionally, one may configure different fonts for each character set, as in the following example:
 
 \begin{figure}[H]
@@ -82,7 +84,7 @@ Additionally, one may configure different fonts for each character set, as in th
 \caption{Example setup}
 \end{figure}
 
-If no fonts are configured, the document font will be used (note that this may result in undesirable results, as few fonts support multiple character sets\footnote{I believe Andreas Stötzner's \emph{Andron Mega} does, albeit I haven't tried it as it is somewhat expensive.}).
+If no fonts are configured, the document font will be used (note that this may give in undesirable results, as few fonts support multiple character sets\footnote{I believe Andreas Stötzner's \emph{Andron Mega} does, albeit I haven't tried it as it is somewhat expensive.}).
 
 Finally, the \verb|MUFI| character set has defined entity names, which result in the creation of macros for each character (see \verb|msignfour| in the following example). These can be suppressed with the \verb|disableentitymacros| option.
 
