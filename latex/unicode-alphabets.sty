@@ -12,8 +12,13 @@
 
 \newcommand\alph@keys[1]{\pgfkeys{/unicode-alphabets/.cd,#1}}
 
+\newif\ifalph@noentitymacros
 \alph@keys{
 	fonts/.code={\alph@keys{fonts/.cd,#1}},
+%	disable entity macros/.is if=alph@noentitymacros,
+%	disable entity macros=false,
+	disableentitymacros/.is if=alph@noentitymacros,
+	disableentitymacros=false,
 }
 
 \newcommand\alph@setup[2]{
@@ -45,13 +50,13 @@
 			\ifcsdef{alph@entity}{%
 				\ifcsempty{alph@entity}{}{%
 					\csxdef{alph@#1@\alph@entity}{\alph@codepoint}%
-					%\ifmufi@nomacros\relax\else%
+					\ifalph@noentitymacros\relax\else%
 						\expanded{\unexpanded{\alph@make@character}{#1}{#2}{\alph@entity}{\alph@codepoint}}%
-					%\fi%
+					\fi%
 				}%
 			}{}%
-		}
-	}
+		}%
+	}%
 }
 \newcommand\alph@make@main[2]{%
 	% #1 = character set
