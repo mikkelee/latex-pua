@@ -47,7 +47,7 @@ The package is configured in the following manner:
 \usepackage[⟨options⟩]{unicode-alphabets}
 \end{verbatim}
 
-Where \verb|options| must be one or more of the following character sets, some of which may be mutually (in-)compatible. See references for further detail on each.
+Where \verb|options| must be one or more of the following character sets. See references for further detail on each.
 
 \begin{description}
 
@@ -82,7 +82,7 @@ Additionally, one may configure different fonts for each character set, as in th
 \caption{Example setup}
 \end{figure}
 
-If no fonts are configured, the document font will be used.
+If no fonts are configured, the document font will be used (note that this may result in undesirable results, as few fonts support multiple character sets\footnote{I believe Andreas Stötzner's \emph{Andron Mega} does, albeit I haven't tried it as it is somewhat expensive.}).
 
 Finally, the \verb|MUFI| character set has defined entity names, which result in the creation of macros for each character (see \verb|msignfour| in the following example). These can be suppressed with the \verb|disableentitymacros| option.
 
