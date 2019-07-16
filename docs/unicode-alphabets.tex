@@ -1,35 +1,111 @@
+% !TEX TS-program = lualatex
+\documentclass{article}
+
+\usepackage{biblatex}
+\addbibresource{unicode-alphabets.bib}
+
+\usepackage{showexpl}
+\usepackage{float}
+\usepackage{moreverb}
+
+\title{Unicode Alphabets}
+\author{Mikkel Eide Eriksen}
+
+\usepackage{fontspec}
+\newfontfamily\mufifont{Palemonas MUFI}
+\newfontfamily\titusfont{TITUS Cyberbit Basic}
+
+\usepackage[
+	CYFI,
+	MUFI,
+	TITUS,
+%	disable entity macros,
+	fonts={
+		CYFI=\titusfont,
+		MUFI=\mufifont,
+		TITUS=\titusfont,
+	},
+]{unicode-alphabets}
+
+\begin{document}
+
+\maketitle
+
 \section{Preface}
 
-While Unicode supports the vast majority of use cases, there are ...
+While Unicode supports the vast majority of use cases, there are certain specialized niches which require characters and glyphs not (yet) represented in the standard.
 
-Thus the Private Use Area (PUA) at code points E000--F8FF.
+Thus the Private Use Area (PUA) at code points E000--F8FF, which enables third parties to define arbitrary character sets.
 
-This package allows using a number of macros to enter characters from the PUA by name and code point.
+This package allows configuring a number of macros to enter characters from the PUA by name or code point.
 
 \section{Setup}
 
-\usepackage[...]{\packagename}
+The package is configured in the following manner:
 
-Where options must be one or more of the following character sets, some of which may be mutually compatible. See references for further detail on each.
+\begin{verbatim}
+\usepackage[⟨options⟩]{unicode-alphabets}
+\end{verbatim}
+
+Where \verb|options| must be one or more of the following character sets, some of which may be mutually (in-)compatible. See references for further detail on each.
 
 \begin{description}
 
 % \item[CSUR] - https://www.evertype.com/standards/csur/
-\item[CYFI] Early Cyrillic glyphs
+\item[CYFI] Early Cyrillic glyphs.
 % DANIA ???
 % \item[LINCUA] Includes the mutually compatible (?) character sets CYFI, DANIA, MUFI, and TITUS
-\item[MUFI] The Medieval Unicode Font Initiative
-\item[SIL] SIL International
-% \item[TITUS] Thesaurus Indogermanischer Text- und Sprachmaterialien
-\item[UNZ] Normung von Sonderzeichen
+\item[MUFI] The Medieval Unicode Font Initiative.
+% \item[SIL] SIL International.
+\item[TITUS] Thesaurus Indogermanischer Text- und Sprachmaterialien.
+% \item[UNZ] Normung von Sonderzeichen.
 
 \end{description}
 
 There is no default, since future versions of this package may supply more character sets that are incompatible with the above.
 
+\clearpage
+Additionally, one may configure different fonts for each character set, as in the following example:
+
+\begin{figure}[H]
+\centering
+\begin{verbatimtab}
+\usepackage[
+	MUFI,
+	TITUS,
+	fonts={
+		MUFI=\mufifont,
+		TITUS=\titusfont,
+	},
+]{unicode-alphabets}
+\end{verbatimtab}
+\caption{Example setup}
+\end{figure}
+
+If no fonts are configured, the document font will be used.
+
+Finally, the \verb|MUFI| character set has defined entity names, which result in the creation of macros for each character (see \verb|msignfour| in the following example). These can be suppressed with the \verb|disableentitymacros| option.
+
 \section{Usage}
 
-Each set defines a macro in the following manner:
+Each set defines a macro in the following manner. Let's use \verb|MUFI| as an example.
 
-\mufi{}
+By default, a macro with the lower-case name of the character set is defined: \verb|\mufi{}|. It can then be used to display characters from the given set:
 
+\begin{figure}[H]
+\centering
+\begin{LTXexample}[varwidth=true]
+\mufi{FLOURISHED SMALL LETTER M SIGN}\\
+\msignflour{}
+\mufi{msignflour}
+\mufi{F2F3}
+\end{LTXexample}
+\caption{Example usage}
+\end{figure}
+
+Additionally, starred versions of each macro are defined, which suppress using the configured font, falling back to the document font.
+
+\nocite{*}
+\printbibliography
+
+\end{document}
