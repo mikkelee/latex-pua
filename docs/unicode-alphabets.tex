@@ -7,6 +7,11 @@
 \usepackage{showexpl}
 \usepackage{float}
 \usepackage{moreverb}
+\usepackage{csvsimple}
+\usepackage{xltabular}
+\usepackage{booktabs}
+
+\include{csvsimple.tmp.patch}
 
 \title{Unicode Alphabets for \LaTeX}
 \author{Mikkel Eide Eriksen}
@@ -35,7 +40,7 @@
 
 While Unicode supports the vast majority of use cases, there are certain specialized niches which require characters and glyphs not (yet) represented in the standard.
 
-Thus the Private Use Area (PUA) at code points E000--F8FF, which enables third parties to define arbitrary character sets.
+Thus the Private Use Area (PUA) at code points \texttt{E000}--\texttt{F8FF}, which enables third parties to define arbitrary character sets.
 
 This package allows configuring a number of macros to enter characters from the PUA by name or code point.
 

@@ -1,0 +1,80 @@
+% !TEX TS-program = lualatex
+\documentclass{article}
+\usepackage[
+	a4paper,
+	margin=1in,
+	landscape
+]{geometry}
+
+\usepackage{csvsimple}
+\usepackage{xltabular}
+\usepackage{booktabs}
+
+\include{csvsimple.tmp.patch}
+
+\title{Unicode Alphabets for \LaTeX\\\bigskip\large Specimen}
+\author{Mikkel Eide Eriksen}
+
+\usepackage{fontspec}
+\newfontfamily\mufifont{Palemonas MUFI}
+\newfontfamily\titusfont{TITUS Cyberbit Basic}
+
+\usepackage[
+	CYFI,
+	MUFI,
+	TITUS,
+%	disable entity macros,
+	fonts={
+		CYFI=\titusfont,
+		MUFI=\mufifont,
+		TITUS=\titusfont,
+	},
+]{unicode-alphabets}
+
+\begin{document}
+
+\maketitle
+
+\cleardoublepage
+\section{MUFI}
+
+\begingroup
+\def\mytablerow{\texttt{\csvcoli} & \mufi{\csvcoli} & \csvcolii & \csvcoliii}
+\begin{xltabular}{\linewidth}{r @{\,} c @{\,} l @{\,} X}
+\toprule
+Code\\
+Point & Glyph & Entity Name & Unicode Name\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\csvloop{
+	file={unicode-alphabets.mufi.csv},
+	late after line=\\,
+	command=\mytablerow,
+}
+\end{xltabular}
+\endgroup
+
+\cleardoublepage
+\section{TITUS}
+
+\begingroup
+\def\mytablerow{\texttt{\csvcoli} & \titus{\csvcoli} & \csvcolii}
+\begin{xltabular}{\linewidth}{r @{\,} c @{\,} X}
+\toprule
+Code\\
+Point & Glyph & Unicode Name\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\csvloop{
+	file={unicode-alphabets.titus.csv},
+	late after line=\\,
+	command=\mytablerow,
+}
+\end{xltabular}
+\endgroup
+
+\end{document}

@@ -1,4 +1,4 @@
-\ProvidesPackage{unicode-alphabets}[2019/07/17 Unicode alphabets in the Private Use Area]
+\ProvidesPackage{unicode-alphabets}[2019/07/18 Unicode alphabets in the Private Use Area]
 
 % License: CC-BY-4.0
 % Author: Mikkel Eide Eriksen <mikkel.eriksen@gmail.com>
@@ -51,8 +51,7 @@
 	% #2 = macro name
 	\alph@make@main{#1}{#2}%
 	\csvloop{
-		file={unicode-alphabets.#1.tsv},
-		separator=tab,
+		file={unicode-alphabets.#1.csv},
 		head to column names,
 		head to column names prefix=alph@,
 		command={
