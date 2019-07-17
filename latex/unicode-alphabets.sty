@@ -8,6 +8,8 @@
 
 \RequirePackage{csvsimple}
 
+\include{csvsimple.tmp.patch}
+
 \makeatletter
 
 \newcommand\alph@keys[1]{\pgfkeys{/unicode-alphabets/.cd,#1}}
@@ -49,6 +51,7 @@
 		file={unicode-alphabets.#1.tsv},
 		separator=tab,
 		head to column names,
+		head to column names prefix=alph@,
 		command={
 			\csxdef{alph@#1@\alph@name}{\alph@codepoint}%
 			%\csshow{alph@entity}%

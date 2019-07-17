@@ -1,0 +1,20 @@
+% https://github.com/T-F-S/csvsimple/issues/7
+
+\makeatletter
+
+\def\set@csv@autohead{%
+  \toks0=\expandafter{\csname\csv@headnameprefix\csv@current@col\endcsname}%
+  \toks1=\expandafter{\csname csvcol\romannumeral\c@csvcol\endcsname}%
+  \begingroup\edef\csv@temp{\endgroup\noexpand\gdef\the\toks0{\the\toks1}\noexpand\csv@AtEndLoop{\noexpand\gdef\the\toks0{}}}%
+  \csv@temp%
+}
+
+\csvset{%
+  head to column names prefix/.store in=\csv@headnameprefix,%
+  head to column names prefix=,%
+  xltabular/.style 2 args={
+    @table={\csv@pretable\begin{xltabular}{#1}{#2}\csv@tablehead}{\csv@tablefoot\end{xltabular}\csv@posttable},
+    late after line=\\},
+}
+
+\makeatother
