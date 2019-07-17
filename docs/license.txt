@@ -1,1 +1,1 @@
-license.txt
+../license.txt
