@@ -18,18 +18,21 @@
 
 \usepackage{fontspec}
 \newfontfamily\mufifont{Palemonas MUFI}
+\newfontfamily\silfont{Doulos SIL}
 \newfontfamily\titusfont{TITUS Cyberbit Basic}
 \newfontfamily\unzfont{LUC.BreitkopfFrakturU1A}
 
 \usepackage[
-	CYFI,
+%	CYFI,
 	MUFI,
+	SIL,
 	TITUS,
 	UNZ,
 %	disable entity macros,
 	fonts={
-		CYFI=\titusfont,
+%		CYFI=\titusfont,
 		MUFI=\mufifont,
+		SIL=\silfont,
 		TITUS=\titusfont,
 		UNZ=\unzfont,
 	},
@@ -66,6 +69,29 @@ Point & Glyph & Entity Name & Unicode Name\\
 \endfoot
 \csvloop{
 	file={unicode-alphabets.mufi.csv},
+	late after line=\\,
+	command=\mytablerow,
+}
+\end{xltabular}
+\endgroup
+
+\cleardoublepage
+\section{SIL}
+
+Using the font \showfont{\silfont} from \url{https://software.sil.org/charis/download/}.
+
+\begingroup
+\def\mytablerow{\texttt{\csvcoli} & \sil{\csvcoli} & \csvcolii}
+\begin{xltabular}{\linewidth}{r @{\,} c @{\,} X}
+\toprule
+Code\\
+Point & Glyph & Unicode Name\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\csvloop{
+	file={unicode-alphabets.sil.csv},
 	late after line=\\,
 	command=\mytablerow,
 }
