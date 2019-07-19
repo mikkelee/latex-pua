@@ -18,16 +18,19 @@
 \usepackage{fontspec}
 \newfontfamily\mufifont{Palemonas MUFI}
 \newfontfamily\titusfont{TITUS Cyberbit Basic}
+\newfontfamily\unzfont{LUC.BreitkopfFrakturU1A}
 
 \usepackage[
 	CYFI,
 	MUFI,
 	TITUS,
+	UNZ,
 %	disable entity macros,
 	fonts={
 		CYFI=\titusfont,
 		MUFI=\mufifont,
 		TITUS=\titusfont,
+		UNZ=\unzfont,
 	},
 ]{unicode-alphabets}
 
@@ -75,6 +78,29 @@ Point & Glyph & Unicode Name\\
 	command=\mytablerow,
 }
 \end{xltabular}
+\endgroup
+
+\cleardoublepage
+\section{UNZ}
+
+\begingroup
+\catcode`\_=12
+\def\mytablerow{\texttt{\csvcoli} & \unz{\csvcoli} & \csvcolii & \csvcoliii}
+\begin{xltabular}{\linewidth}{r @{\,} c @{\,} l @{\,} X}
+\toprule
+Code\\
+Point & Glyph & Entity Name & Unicode Name\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\csvloop{
+	file={unicode-alphabets.unz.csv},
+	late after line=\\,
+	command=\mytablerow,
+}
+\end{xltabular}
+\catcode`\_=8
 \endgroup
 
 \end{document}
