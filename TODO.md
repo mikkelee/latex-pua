@@ -1,4 +1,5 @@
 TODO
 ====
 
-* support for font families (italic/bold)
+* Fix dates in bibliography
+
