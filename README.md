@@ -5,6 +5,8 @@ Macros for using various PUA character sets in LaTeX (CYFI, MUFI, SIL, TITUS, UN
 
 See [unicode-alphabets.pdf](docs/unicode-alphabets.pdf) for the documentation.
 
+See [specimen.pdf](docs/specimen.pdf) for examples.
+
 Contents last updated 2017-07-19.
 
 Package available via CTAN at https://www.ctan.org/pkg/unicode-alphabets
