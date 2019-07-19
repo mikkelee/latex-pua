@@ -9,6 +9,7 @@
 \usepackage{csvsimple}
 \usepackage{xltabular}
 \usepackage{booktabs}
+\usepackage{hyperref}
 
 \include{csvsimple.tmp.patch}
 
@@ -34,12 +35,24 @@
 	},
 ]{unicode-alphabets}
 
+\makeatletter
+\newcommand\showfont[1]{%
+	{%
+		#1%
+		\edef\currentfontname{\f@family}\currentfontname
+		\normalfont \emph{(\currentfontname{})}%
+	}
+}
+\makeatother
+
 \begin{document}
 
 \maketitle
 
 \cleardoublepage
 \section{MUFI}
+
+Using the font \showfont{\mufifont} from \url{http://mufi.info/}.
 
 \begingroup
 \def\mytablerow{\texttt{\csvcoli} & \mufi{\csvcoli} & \csvcolii & \csvcoliii}
@@ -62,6 +75,8 @@ Point & Glyph & Entity Name & Unicode Name\\
 \cleardoublepage
 \section{TITUS}
 
+Using the font \showfont{\titusfont} from \url{http://titus.fkidg1.uni-frankfurt.de/unicode/tituut.asp}.
+
 \begingroup
 \def\mytablerow{\texttt{\csvcoli} & \titus{\csvcoli} & \csvcolii}
 \begin{xltabular}{\linewidth}{r @{\,} c @{\,} X}
@@ -82,6 +97,8 @@ Point & Glyph & Unicode Name\\
 
 \cleardoublepage
 \section{UNZ}
+
+Using the font \showfont{\unzfont} from \url{http://www.ligafaktur.de/}.
 
 \begingroup
 \catcode`\_=12
