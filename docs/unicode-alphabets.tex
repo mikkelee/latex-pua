@@ -8,13 +8,17 @@
 \usepackage{float}
 \usepackage{moreverb}
 \usepackage{csvsimple}
+\usepackage{enumitem}
 \usepackage{xltabular}
 \usepackage{booktabs}
+\usepackage[
+	hidelinks,
+]{hyperref}
 
 \include{csvsimple.tmp.patch}
 
 \title{Unicode Alphabets for \LaTeX}
-\author{Mikkel Eide Eriksen}
+\author{Mikkel Eide Eriksen\\\href{mailto:mikkel.eriksen@gmail.com}{mikkel.eriksen@gmail.com}}
 
 \usepackage{fontspec}
 \newfontfamily\mufifont{Palemonas MUFI}
@@ -43,13 +47,12 @@ This package allows configuring a number of macros to enter characters from the 
 The package is configured in the following manner:
 
 \begin{verbatim}
-\usepackage[⟨options⟩]{unicode-alphabets}
+\usepackage[options]{unicode-alphabets}
 \end{verbatim}
 
 Where \verb|options| must be one or more of the following character sets. See references for further detail on each, as well as usable fonts.
 
-\begin{figure}[H]
-\begin{description}
+\begin{description}[labelindent=1cm, leftmargin=*, rightmargin=\leftmargin]
 
 \item[AGL] Adobe Glyph List\cite{AGL}.
 % \item[CSUR] - https://www.evertype.com/standards/csur/
@@ -63,8 +66,6 @@ Where \verb|options| must be one or more of the following character sets. See re
 \item[UNZ] Normung von Sonderzeichen\cite{UNZ}.
 
 \end{description}
-\caption{Character sets}
-\end{figure}
 
 There is no default, since future versions of this package may supply more character sets that are incompatible with the above.
 
