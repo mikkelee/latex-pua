@@ -37,6 +37,7 @@
 		#1/.code={\alph@make@set{#2}{##1}},
 	}
 }
+\alph@setup{AGL}{agl}
 \alph@setup{CYFI}{cyfi}
 \alph@setup{MUFI}{mufi}
 \alph@setup{SIL}{sil}
@@ -55,8 +56,11 @@
 		head to column names,
 		head to column names prefix=alph@,
 		command={
-			\csxdef{alph@#1@\alph@name}{\alph@codepoint}%
-			%\csshow{alph@entity}%
+			\ifcsdef{alph@name}{%
+				\ifcsempty{alph@name}{}{%
+					\csxdef{alph@#1@\alph@name}{\alph@codepoint}%
+				}%
+			}{}%
 			\ifcsdef{alph@entity}{%
 				\ifcsempty{alph@entity}{}{%
 					\csxdef{alph@#1@\alph@entity}{\alph@codepoint}%
