@@ -9,10 +9,11 @@
 \usepackage{csvsimple}
 \usepackage{xltabular}
 \usepackage{booktabs}
+\usepackage{pgfkeys}
+\usepackage{stringstrings}
 \usepackage[
 	hidelinks,
 ]{hyperref}
-\usepackage{pgfkeys}
 
 \include{csvsimple.tmp.patch}
 
@@ -53,9 +54,10 @@
 
 \newif\ifspec@has@entity
 \specset{
-	character set/.store in=\spec@charset,
-	code/.code={
-		\csedef{spec@code}{#1}%
+	character set/.code={
+		\csedef{spec@charset}{#1}%
+		\caselower[q]{\spec@charset}%
+		\csedef{spec@code}{\thestring}%
 		\csedef{spec@csvfile}{unicode-alphabets.\spec@code.csv}%
 		\csedef{spec@font}{\csname\spec@code font\endcsname}%
 	},
@@ -104,28 +106,24 @@
 
 \specimen{
 	character set=MUFI,
-	code=mufi,
 	font url=http://mufi.info/,
 	has entity=true,
 }
 
 \specimen{
 	character set=SIL,
-	code=sil,
 	font url=https://software.sil.org/charis/download/,
 }
 
 \specimen{
 	character set=TITUS,
-	code=titus,
 	font url=http://titus.fkidg1.uni-frankfurt.de/unicode/tituut.asp,
 }
 
 \begingroup
-\catcode`\_=12
+\catcode`\_=12 % unz entities have underscores
 \specimen{
 	character set=UNZ,
-	code=unz,
 	font url=http://www.ligafaktur.de/,
 	has entity=true,
 }

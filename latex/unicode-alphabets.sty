@@ -1,4 +1,4 @@
-\ProvidesPackage{unicode-alphabets}[2019/07/19 Unicode alphabets in the Private Use Area]
+\ProvidesPackage{unicode-alphabets}[2019/07/22 Unicode alphabets in the Private Use Area]
 
 % License: CC-BY-SA 4.0
 % Author: Mikkel Eide Eriksen <mikkel.eriksen@gmail.com>
@@ -8,6 +8,7 @@
 
 \RequirePackage{etoolbox}
 \RequirePackage{xparse}
+\RequirePackage{stringstrings}
 
 \RequirePackage{csvsimple}
 
@@ -26,24 +27,26 @@
 	disableentitymacros=false,
 }
 
-\newcommand\alph@setup[2]{
+\newcommand\alph@setup[1]{
+	\caselower[q]{#1}
+	\csxdef{#1code}{\thestring}
 	\edef\temp{%
 		\noexpand\alph@keys{
-			fonts/#1/.store in=\unexpanded\expandafter{\csname alph@font@#2\endcsname},
+			fonts/#1/.store in=\unexpanded\expandafter{\csname alph@font@\csuse{#1code}\endcsname},
 		}%
 	}\temp%
 	\alph@keys{
-		#1/.default={#2},
-		#1/.code={\alph@make@set{#2}{##1}},
+		#1/.default={\csuse{#1code}},
+		#1/.code={\alph@make@set{\csuse{#1code}}{##1}},
 	}
 }
-\alph@setup{AGL}{agl}
-\alph@setup{CYFI}{cyfi}
-\alph@setup{MUFI}{mufi}
-\alph@setup{SIL}{sil}
-\alph@setup{TITUS}{titus}
-\alph@setup{UCSUR}{ucsur}
-\alph@setup{UNZ}{unz}
+\alph@setup{AGL}
+\alph@setup{CYFI}
+\alph@setup{MUFI}
+\alph@setup{SIL}
+\alph@setup{TITUS}
+\alph@setup{UCSUR}
+\alph@setup{UNZ}
 \alph@keys{
 	LINCUA/.style={CYFI,MUFI,TITUS}
 }
