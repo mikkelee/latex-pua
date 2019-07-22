@@ -1,1 +1,6 @@
-cd ..; zip -r unicode-alphabets/unicode-alphabets-TMP.zip unicode-alphabets/latex unicode-alphabets/docs/unicode-alphabets.{tex,pdf,bib} unicode-alphabets/docs/license.txt unicode-alphabets/docs/example.{tex,pdf} unicode-alphabets/README.md; cd -
+cd ..
+zip -r unicode-alphabets/unicode-alphabets-TMP.zip\
+	unicode-alphabets/latex\
+	unicode-alphabets/docs/*.{tex,pdf,bib,txt}\
+	unicode-alphabets/README.md
+cd -
