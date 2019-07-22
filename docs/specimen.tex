@@ -1,5 +1,5 @@
 % !TEX TS-program = lualatex
-\documentclass{article}
+\documentclass{book}
 \usepackage[
 	a4paper,
 	margin=1in,
@@ -9,7 +9,10 @@
 \usepackage{csvsimple}
 \usepackage{xltabular}
 \usepackage{booktabs}
-\usepackage{hyperref}
+\usepackage[
+	hidelinks,
+]{hyperref}
+\usepackage{pgfkeys}
 
 \include{csvsimple.tmp.patch}
 
@@ -39,110 +42,95 @@
 ]{unicode-alphabets}
 
 \makeatletter
-\newcommand\showfont[1]{%
-	{%
-		#1%
-		\edef\currentfontname{\f@family}\currentfontname
-		\normalfont \emph{(\currentfontname{})}%
-	}
+\newcommand\specset[1]{\pgfkeys{/specimen/.cd,#1}}
+
+\newif\ifspec@has@entity
+\specset{
+	character set/.store in=\spec@charset,
+	code/.code={
+		\csedef{spec@code}{#1}%
+		\csedef{spec@csvfile}{unicode-alphabets.\spec@code.csv}%
+	},
+	font/.store in=\spec@font,
+	font name/.store in=\spec@font@name,
+	font url/.store in=\spec@font@url,
+	has entity/.is if=spec@has@entity,
 }
+
+\newcommand\specimen[1]{%
+	\specset{has entity=false,#1}%
+	\chapter*{\spec@charset}
+	\addcontentsline{toc}{chapter}{\spec@charset}
+
+	Using the font \spec@font@name{} from \url{\spec@font@url}.
+
+	\begingroup
+	\def\mytablerow{\texttt{\csvcoli} & \csuse{\csuse{spec@code}}{\csvcoli} & \ifspec@has@entity\csvcolii &\fi \csvcoliii}
+	\ifspec@has@entity
+		\def\spec@columns{r @{ } c @{ } l @{ } X}
+	\else
+		\def\spec@columns{r @{ } c @{ } X}
+	\fi
+	\expanded{\unexpanded{\begin{xltabular}{\linewidth}}{\spec@columns}}
+	\toprule
+	& Code & \ifspec@has@entity&\fi \hfill \spec@charset\\
+	Glyph & Point & \ifspec@has@entity Entity Name &\fi Unicode Name\\
+	\midrule
+	\endhead
+	\bottomrule
+	\endfoot
+	\csvloop{
+		file={\spec@csvfile},
+		late after line=\\,
+		head to column names prefix=spec@,
+		command=\mytablerow,
+	}
+	\end{xltabular}
+	\endgroup
+}
+
 \makeatother
 
 \begin{document}
 
 \maketitle
+\tableofcontents
 
-\cleardoublepage
-\section{MUFI}
-
-Using the font \showfont{\mufifont} from \url{http://mufi.info/}.
-
-\begingroup
-\def\mytablerow{\texttt{\csvcoli} & \mufi{\csvcoli} & \csvcolii & \csvcoliii}
-\begin{xltabular}{\linewidth}{r @{\,} c @{\,} l @{\,} X}
-\toprule
-Code\\
-Point & Glyph & Entity Name & Unicode Name\\
-\midrule
-\endhead
-\bottomrule
-\endfoot
-\csvloop{
-	file={unicode-alphabets.mufi.csv},
-	late after line=\\,
-	command=\mytablerow,
+\specimen{
+	character set=MUFI,
+	code=mufi,
+	font=\mufifont,
+	font name=Palemonas MUFI,
+	font url=http://mufi.info/,
+	has entity=true,
 }
-\end{xltabular}
-\endgroup
 
-\cleardoublepage
-\section{SIL}
-
-Using the font \showfont{\silfont} from \url{https://software.sil.org/charis/download/}.
-
-\begingroup
-\def\mytablerow{\texttt{\csvcoli} & \sil{\csvcoli} & \csvcolii}
-\begin{xltabular}{\linewidth}{r @{\,} c @{\,} X}
-\toprule
-Code\\
-Point & Glyph & Unicode Name\\
-\midrule
-\endhead
-\bottomrule
-\endfoot
-\csvloop{
-	file={unicode-alphabets.sil.csv},
-	late after line=\\,
-	command=\mytablerow,
+\specimen{
+	character set=SIL,
+	code=sil,
+	font=\silfont,
+	font name=Doulos SIL,
+	font url=https://software.sil.org/charis/download/,
 }
-\end{xltabular}
-\endgroup
 
-\cleardoublepage
-\section{TITUS}
-
-Using the font \showfont{\titusfont} from \url{http://titus.fkidg1.uni-frankfurt.de/unicode/tituut.asp}.
-
-\begingroup
-\def\mytablerow{\texttt{\csvcoli} & \titus{\csvcoli} & \csvcolii}
-\begin{xltabular}{\linewidth}{r @{\,} c @{\,} X}
-\toprule
-Code\\
-Point & Glyph & Unicode Name\\
-\midrule
-\endhead
-\bottomrule
-\endfoot
-\csvloop{
-	file={unicode-alphabets.titus.csv},
-	late after line=\\,
-	command=\mytablerow,
+\specimen{
+	character set=TITUS,
+	code=titus,
+	font=\titusfont,
+	font name=TITUS Cyberbit Basic,
+	font url=http://titus.fkidg1.uni-frankfurt.de/unicode/tituut.asp,
 }
-\end{xltabular}
-\endgroup
-
-\cleardoublepage
-\section{UNZ}
-
-Using the font \showfont{\unzfont} from \url{http://www.ligafaktur.de/}.
 
 \begingroup
 \catcode`\_=12
-\def\mytablerow{\texttt{\csvcoli} & \unz{\csvcoli} & \csvcolii & \csvcoliii}
-\begin{xltabular}{\linewidth}{r @{\,} c @{\,} l @{\,} X}
-\toprule
-Code\\
-Point & Glyph & Entity Name & Unicode Name\\
-\midrule
-\endhead
-\bottomrule
-\endfoot
-\csvloop{
-	file={unicode-alphabets.unz.csv},
-	late after line=\\,
-	command=\mytablerow,
+\specimen{
+	character set=UNZ,
+	code=unz,
+	font=\unzfont,
+	font name=LUC.EnsisheimU1A,
+	font url=http://www.ligafaktur.de/,
+	has entity=true,
 }
-\end{xltabular}
 \catcode`\_=8
 \endgroup
 
