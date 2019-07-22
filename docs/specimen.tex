@@ -44,15 +44,21 @@
 \makeatletter
 \newcommand\specset[1]{\pgfkeys{/specimen/.cd,#1}}
 
+\newcommand\spec@showfont[1]{%
+	{%
+		#1%
+		\edef\currentfontname{\f@family}\currentfontname
+	}%
+}
+
 \newif\ifspec@has@entity
 \specset{
 	character set/.store in=\spec@charset,
 	code/.code={
 		\csedef{spec@code}{#1}%
 		\csedef{spec@csvfile}{unicode-alphabets.\spec@code.csv}%
+		\csedef{spec@font}{\csname\spec@code font\endcsname}%
 	},
-	font/.store in=\spec@font,
-	font name/.store in=\spec@font@name,
 	font url/.store in=\spec@font@url,
 	has entity/.is if=spec@has@entity,
 }
@@ -62,7 +68,7 @@
 	\chapter*{\spec@charset}
 	\addcontentsline{toc}{chapter}{\spec@charset}
 
-	Using the font \spec@font@name{} from \url{\spec@font@url}.
+	Using the font \spec@showfont{\spec@font} from \url{\spec@font@url}.
 
 	\begingroup
 	\def\mytablerow{\texttt{\csvcoli} & \csuse{\csuse{spec@code}}{\csvcoli} & \ifspec@has@entity\csvcolii &\fi \csvcoliii}
@@ -99,8 +105,6 @@
 \specimen{
 	character set=MUFI,
 	code=mufi,
-	font=\mufifont,
-	font name=Palemonas MUFI,
 	font url=http://mufi.info/,
 	has entity=true,
 }
@@ -108,16 +112,12 @@
 \specimen{
 	character set=SIL,
 	code=sil,
-	font=\silfont,
-	font name=Doulos SIL,
 	font url=https://software.sil.org/charis/download/,
 }
 
 \specimen{
 	character set=TITUS,
 	code=titus,
-	font=\titusfont,
-	font name=TITUS Cyberbit Basic,
 	font url=http://titus.fkidg1.uni-frankfurt.de/unicode/tituut.asp,
 }
 
@@ -126,8 +126,6 @@
 \specimen{
 	character set=UNZ,
 	code=unz,
-	font=\unzfont,
-	font name=LUC.EnsisheimU1A,
 	font url=http://www.ligafaktur.de/,
 	has entity=true,
 }
