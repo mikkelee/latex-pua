@@ -52,7 +52,6 @@
 	}%
 }
 
-\newif\ifspec@has@entity
 \specset{
 	character set/.code={
 		\csedef{spec@charset}{#1}%
@@ -61,27 +60,26 @@
 		\csedef{spec@csvfile}{unicode-alphabets.\spec@code.csv}%
 	},
 	font url/.store in=\spec@font@url,
-	has entity/.is if=spec@has@entity,
 }
 
 \newcommand\specimen[1]{%
-	\specset{has entity=false,#1}%
+	\specset{#1}%
 	\chapter*{\spec@charset}
 	\addcontentsline{toc}{chapter}{\spec@charset}
 
 	Using the font \spec@showfont{\csuse{alph@font@\spec@code}} from \url{\spec@font@url}.
 
 	\begingroup
-	\def\mytablerow{\texttt{\csvcoli} & \csuse{\csuse{spec@code}}{\csvcoli} & \ifspec@has@entity\csvcolii &\fi \csvcoliii}
-	\ifspec@has@entity
-		\def\spec@columns{r @{ } c @{ } l @{ } X}
-	\else
-		\def\spec@columns{r @{ } c @{ } X}
-	\fi
+	\def\mytablerow{\texttt{\csvcoli} & \csuse{\csuse{spec@code}}{\csvcoli} & \ifbool{alph@\spec@code @has@entities}{\csvcolii & \csvcoliii}{\csvcolii}}
+	\ifbool{alph@\spec@code @has@entities}{%
+		\def\spec@columns{r @{ } c @{ } l @{ } X}%
+	}{%
+		\def\spec@columns{r @{ } c @{ } X}%
+	}%
 	\expanded{\unexpanded{\begin{xltabular}{\linewidth}}{\spec@columns}}
 	\toprule
-	Code & & \ifspec@has@entity&\fi \hfill \spec@charset\\
-	Point & Glyph & \ifspec@has@entity Entity Name &\fi Unicode Name\\
+	Code & & \ifbool{alph@\spec@code @has@entities}{&}{} \hfill \spec@charset\\
+	Point & Glyph & \ifbool{alph@\spec@code @has@entities}{ Entity Name &}{} Unicode Name\\
 	\midrule
 	\endhead
 	\bottomrule
@@ -106,7 +104,6 @@
 \specimen{
 	character set=MUFI,
 	font url=http://mufi.info/,
-	has entity=true,
 }
 
 \specimen{
@@ -124,7 +121,6 @@
 \specimen{
 	character set=UNZ,
 	font url=http://www.ligafaktur.de/,
-	has entity=true,
 }
 \catcode`\_=8
 \endgroup
