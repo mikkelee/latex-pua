@@ -59,7 +59,6 @@
 		\caselower[q]{\spec@charset}%
 		\csedef{spec@code}{\thestring}%
 		\csedef{spec@csvfile}{unicode-alphabets.\spec@code.csv}%
-		\csedef{spec@font}{\csname\spec@code font\endcsname}%
 	},
 	font url/.store in=\spec@font@url,
 	has entity/.is if=spec@has@entity,
@@ -70,7 +69,7 @@
 	\chapter*{\spec@charset}
 	\addcontentsline{toc}{chapter}{\spec@charset}
 
-	Using the font \spec@showfont{\spec@font} from \url{\spec@font@url}.
+	Using the font \spec@showfont{\csuse{alph@font@\spec@code}} from \url{\spec@font@url}.
 
 	\begingroup
 	\def\mytablerow{\texttt{\csvcoli} & \csuse{\csuse{spec@code}}{\csvcoli} & \ifspec@has@entity\csvcolii &\fi \csvcoliii}
