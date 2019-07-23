@@ -54,6 +54,7 @@
 \newcommand\alph@make@set[2]{%
 	% #1 = character set
 	% #2 = macro name
+	\newbool{alph@#1@has@entities}%
 	\alph@make@main{#1}{#2}%
 	\csvloop{
 		file={unicode-alphabets.#1.csv},
@@ -67,6 +68,7 @@
 			}{}%
 			\ifcsdef{alph@entity}{%
 				\ifcsempty{alph@entity}{}{%
+					\booltrue{alph@#1@has@entities}%
 					\csxdef{alph@#1@\alph@entity}{\alph@codepoint}%
 					\ifalph@noentitymacros\relax\else%
 						\expanded{\unexpanded{\alph@make@character}{#1}{#2}{\alph@entity}{\alph@codepoint}}%
