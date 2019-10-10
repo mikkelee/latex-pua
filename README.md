@@ -7,7 +7,7 @@ See [unicode-alphabets.pdf](docs/unicode-alphabets.pdf) for the documentation.
 
 See [specimen.pdf](docs/specimen.pdf) for examples.
 
-Contents last updated 2019-07-23.
+Contents last updated 2019-10-10.
 
 Package available via CTAN at https://www.ctan.org/pkg/unicode-alphabets
 
