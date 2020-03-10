@@ -31,7 +31,7 @@ F4FF,longs_longs_t,Kleine Latein-sst-Ligatur,LATIN SMALL LIGATURE LONG S LONG S 
 FB05,longs_t,Kleine Latein-st-Ligatur,LATIN SMALL LIGATURE LONG S T
 EED9,t_t,Kleine Latein-tt-Ligatur,LATIN SMALL LIGATURE TT
 EEDC,t_z,Kleine Latein-tz-Ligatur,LATIN SMALL LIGATURE TZ
-F4F7,prestroke,Vorstrich, auf der Grundlinie ansetzend,BASE-LINE STROKE PLACED BEFORE
+F4F7,prestroke,Vorstrich auf der Grundlinie ansetzend,BASE-LINE STROKE PLACED BEFORE
 F4F8,S_t,Verbindung aus großem Lat.-S/kleinem Lat.-t,LATIN LIGATURE CAPITAL LETTER S SMALL LETTER T
 F500,a_,Anstrichloses kleines Latein-a,LATIN SMALL LETTER A WITHOUT STROKE PLACED BEFORE
 F501,adieresis_,Anstrichloses kleines Latein-ä,LATIN SMALL LETTER ADIERESIS WITHOUT STROKE PLACED BEFORE
